@@ -19,6 +19,10 @@ function Reload(tab_id, seconds) {
 	this.interval_id = null;
 }
 
+Reload.prototype.toString = function() {
+	return 'Reload(' + this.tab_id + ', ' + this.seconds + ' /* text=' + this.badge_text + ', id=' + this.interval_id + ' */ )';
+};
+
 Reload.prototype.reload_tab = function() {
 	chrome.tabs.reload(this.tab_id);
 };
@@ -63,7 +67,6 @@ function clear_reload(tab_id) {
 function clear_all_reloads() {
 	var ids = Object.keys(g_active_reloads)
 	for (var tab_id of ids) {
-		console.log(tab_id);
 		clear_reload(tab_id);
 	}
 	console.assert(g_active_reloads_length == 0);
@@ -78,51 +81,81 @@ function set_reload(tab_id, seconds) {
 		g_active_reloads[tab_id] = x;
 		g_active_reloads_length++;
 		x.set_chrome_badge();
-		x.interval_id = setInterval(x.reload_tab, seconds * 1000);
+		x.interval_id = setInterval(function() {
+			x.reload_tab();
+		}, seconds * 1000);
 		set_or_clear_chrome_listeners();
 	}
+}
+
+// Returns the amount of seconds of a reload of a tab.
+// Returns zero if no reload is set.
+function get_reload(tab_id) {
+	var x = g_active_reloads[tab_id];
+	if (x) {
+		return x.seconds;
+	}
+	return 0;
+}
+
+// Returns the number of active auto-reloads.
+function get_how_many_reloads_are_active() {
+	return g_active_reloads_length;
 }
 
 //////////////////////////////////////////////////////////////////////
 // Misc.
 
-function seconds_to_badge_text(seconds) {
+function split_seconds(seconds) {
 	var minutes = Math.floor(seconds / 60);
 	var hours = Math.floor(minutes / 60);
 	var days = Math.floor(hours / 24);
 
-	seconds = seconds % 60;
-	minutes = minutes % 60;
-	hours = hours % 24;
+	return {
+		'seconds': seconds % 60,
+		'minutes': minutes % 60,
+		'hours': hours % 24,
+		'days': days
+	};
+}
 
-	if (days > 9) {
-		return days + 'd';
-	} else if (days > 0) {
-		if (hours > 0) {
-			return (days + (hours / 24.0)).toFixed(1) + 'd';
-		} else {
+function seconds_to_badge_text(seconds) {
+	var x = split_seconds(seconds);
+
+	if (x.days > 9) {
+		return x.days + 'd';
+	} else if (x.days > 0) {
+		if (x.hours > 0) {
+			// If 9 days and 23 hours, it gets rounded to 10.0.
+			// I want it to display as '10d' instead of '10.0d'.
+			let days = (x.days + (x.hours / 24.0)).toFixed(1);
+			if (days.length > 3) {
+				days = days.substring(0, days.indexOf('.'));
+			}
 			return days + 'd';
-		}
-	} else if (hours > 9) {
-			return hours + 'h';
-	} else if (hours > 0) {
-		if (minutes > 9) {
-			return hours + 'h' + minutes;
-		} else if (minutes > 0) {
-			return hours + 'h' + '0' + minutes;
 		} else {
-			return hours + 'h';
+			return x.days + 'd';
 		}
-	} else if (minutes > 0) {
-		if (seconds > 9) {
-			return minutes + '\'' + seconds;
-		} else if (seconds > 0) {
-			return minutes + '\'' + '0' + seconds;
+	} else if (x.hours > 9) {
+			return x.hours + 'h';
+	} else if (x.hours > 0) {
+		if (x.minutes > 9) {
+			return x.hours + 'h' + x.minutes;
+		} else if (x.minutes > 0) {
+			return x.hours + 'h' + '0' + x.minutes;
 		} else {
-			return minutes + '\'';
+			return x.hours + 'h';
 		}
-	} else if (seconds > 0) {
-		return seconds + '"';
+	} else if (x.minutes > 0) {
+		if (x.seconds > 9) {
+			return x.minutes + '\'' + x.seconds;
+		} else if (x.seconds > 0) {
+			return x.minutes + '\'' + '0' + x.seconds;
+		} else {
+			return x.minutes + '\'';
+		}
+	} else if (x.seconds > 0) {
+		return x.seconds + '"';
 	} else {
 		return '';
 	}
@@ -132,7 +165,6 @@ function seconds_to_badge_text(seconds) {
 // Chrome listeners.
 
 function tabs_onUpdated_handler(tab_id, change_info, tab) {
-	console.log('onUpdated', tab_id, change_info);
 	var x = g_active_reloads[tab_id];
 	if (x) {
 		if (change_info.status == 'loading') {
@@ -145,7 +177,6 @@ function tabs_onUpdated_handler(tab_id, change_info, tab) {
 }
 
 function tabs_onRemoved_handler(tab_id, remove_info) {
-	console.log('onRemoved', tab_id, remove_info);
 	clear_reload(tab_id);
 }
 

@@ -3,7 +3,7 @@
 
   "name": "Tab auto reloader",
   "short_name": "Tab reloader",
-  "description": "This extension reloads the current tab every couple of seconds or minutes.",
+  "description": "This extension reloads the current tab at a chosen interval.",
   "version": "1.0",
   "homepage_url": "https://github.com/denilsonsa/crx-reload-tab/",
 

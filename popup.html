@@ -4,9 +4,100 @@
 <meta charset="utf8">
 <script src="popup.js" defer></script>
 <title>Tab auto reloader</title>
+<style type="text/css">
+html, body, form, p, div {
+	display: block;
+	margin: 0;
+	padding: 0;
+	font: sans-serif;
+}
+
+section {
+	margin: 1ex 1ex;
+}
+
+#stop_this_tab_button {
+	display: block;
+	width: 100%;
+	box-sizing: border-box;
+	margin: 0;
+	padding: 1ex 0;
+	font-weight: bold;
+}
+
+.preset_row {
+	display: flex;
+}
+.preset_row > input[type="button"] {
+	flex-grow: 0;
+	flex-shrink: 1;
+}
+input.preset_button {
+	width: 4.5em;
+	font-weight: normal;
+	padding: 1ex 0;
+}
+input.preset_button.active {
+	font-weight: bold;
+}
+.custom_row input[type="number"] {
+	width: 2.75em;
+	padding: 0;
+}
+.custom_row input[type="submit"] {
+}
+</style>
 </head>
 <body>
-<input type="range" id="therange" min="0" max="60" value="10">
-<input type="button" id="thebutton" value="reload!">
+
+<section id="section_this_tab" style="display: none;">
+	<input type="button" id="stop_this_tab_button" value="Stop reloading this tab">
+</section>
+
+<section id="section_presets">
+	<div class="preset_row">
+		<input type="button" class="preset_button" data-seconds="5" value="5s">
+		<input type="button" class="preset_button" data-seconds="10" value="10s">
+		<input type="button" class="preset_button" data-seconds="15" value="15s">
+		<input type="button" class="preset_button" data-seconds="20" value="20s">
+		<input type="button" class="preset_button" data-seconds="30" value="30s">
+		<input type="button" class="preset_button" data-seconds="45" value="45s">
+		<input type="button" class="preset_button" data-seconds="60" value="60s">
+	</div>
+	<div class="preset_row">
+		<input type="button" class="preset_button" data-seconds="120" value="2min">
+		<input type="button" class="preset_button" data-seconds="300" value="5min">
+		<input type="button" class="preset_button" data-seconds="600" value="10min">
+		<input type="button" class="preset_button" data-seconds="900" value="15min">
+		<input type="button" class="preset_button" data-seconds="1200" value="20min">
+		<input type="button" class="preset_button" data-seconds="1800" value="30min">
+		<input type="button" class="preset_button" data-seconds="2700" value="45min">
+	</div>
+	<div class="preset_row">
+		<input type="button" class="preset_button" data-seconds="3600" value="1h">
+		<input type="button" class="preset_button" data-seconds="7200" value="2h">
+		<input type="button" class="preset_button" data-seconds="10800" value="3h">
+		<input type="button" class="preset_button" data-seconds="14400" value="4h">
+		<input type="button" class="preset_button" data-seconds="28800" value="8h">
+		<input type="button" class="preset_button" data-seconds="43200" value="12h">
+		<input type="button" class="preset_button" data-seconds="86400" value="24h">
+	</div>
+</section>
+
+<section id="section_custom">
+	<form id="custom_form" class="custom_row">
+		<input type="number" min="0"  max="30" step="1" autocomplete="off" value="0" name="days"    id="custom_days"   > days,
+		<input type="number" min="-1" max="24" step="1" autocomplete="off" value="0" name="hours"   id="custom_hours"  > hours,
+		<input type="number" min="-1" max="60" step="1" autocomplete="off" value="0" name="minutes" id="custom_minutes"> minutes,
+		<input type="number" min="-1" max="60" step="1" autocomplete="off" value="0" name="seconds" id="custom_seconds"> seconds
+		<input type="submit" value="Apply">
+	</form>
+</section>
+
+<section id="section_other" style="display: none;">
+	<output id="number_of_reloading_tabs">No tabs</output> being reloaded by this extension.
+	<input type="button" id="stop_all_tabs_button" value="Stop reloading all tabs">
+</section>
+
 </body>
 </html>
