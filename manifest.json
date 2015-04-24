@@ -21,6 +21,7 @@
     "default_title": "Reload this page every…"
   },
   "background": {
+    "scripts": [ "background.js" ],
     "persistent": false
   },
   "permissions": [
