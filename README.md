@@ -34,8 +34,8 @@ was not enough to prevent it from being suspended.
 There is also the [alarms API][alarms], but the minimum interval is one minute,
 which is unsuitable for the purposes of this extension.
 
-If someone finds a better way to implement this extension, feel free to open an
-issue or send a pull request.
+If someone finds a better way to implement this extension, feel free to open
+[an issue][issues] or send [a pull request][pulls].
 
 ### Icon badge and Chrome event listeners
 
@@ -55,6 +55,8 @@ auto-reloaded.
 
 
 [cws]: https://chrome.google.com/webstore/detail/knnahnemielbnanghaphjgheamgcjjcb
+[issues]: https://github.com/denilsonsa/crx-reload-tab/issues
+[pulls]: https://github.com/denilsonsa/crx-reload-tab/pulls
 [reload]: https://openclipart.org/detail/171074/reload-icon
 [stopwatch]: https://openclipart.org/detail/173421/stopwatch
 [alarms]: https://developer.chrome.com/extensions/alarms
