@@ -16,7 +16,6 @@ function Reload(tab_id, seconds) {
 	this.tab_id = tab_id;
 	this.seconds = seconds;
 	this.badge_text = seconds_to_badge_text(seconds);
-	this.timeout_id = null;
 	this.interval_id = null;
 }
 
@@ -32,8 +31,6 @@ Reload.prototype.set_chrome_badge = function() {
 };
 
 Reload.prototype.clear = function() {
-	clearTimeout(this.timeout_id);
-	this.timeout_id = null;
 	clearInterval(this.interval_id);
 	this.interval_id = null;
 	this.badge_text = '';
@@ -57,9 +54,9 @@ function clear_reload(tab_id) {
 	if (x) {
 		x.clear();
 		g_active_reloads_length--;
+		set_or_clear_chrome_listeners();
 	}
 	delete g_active_reloads[tab_id];
-	set_or_clear_chrome_listeners();
 }
 
 // Clears all currently active reloads.
