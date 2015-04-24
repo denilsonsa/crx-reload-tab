@@ -16,8 +16,6 @@
    width="100%"
    height="100%"
    sodipodi:docname="icon-wip.svg">
-  <defs
-     id="defs4138" />
   <sodipodi:namedview
      id="base"
      pagecolor="#ffffff"
@@ -54,18 +52,6 @@
        position="30.128101,26.753473"
        id="guide4958" />
   </sodipodi:namedview>
-  <metadata
-     id="metadata4141">
-    <rdf:RDF>
-      <cc:Work
-         rdf:about="">
-        <dc:format>image/svg+xml</dc:format>
-        <dc:type
-           rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
-        <dc:title></dc:title>
-      </cc:Work>
-    </rdf:RDF>
-  </metadata>
   <g
      inkscape:label="Layer 1"
      inkscape:groupmode="layer"
@@ -88,14 +74,13 @@
        inkscape:transform-center-y="-0.226839"
        inkscape:transform-center-x="0.18" />
     <g
-       id="g4013"
+       style="fill:#000000"
        transform="matrix(0.9627805,0,0,0.9627805,77.831663,-904.23415)">
       <rect
          x="-52.653999"
          y="940.229"
          width="9.849"
          height="8.3338003"
-         style="fill:#000000"
          ry="1.2627"
          id="rect4009" />
       <rect
@@ -104,11 +89,10 @@
          width="3.7881"
          height="2.9042001"
          ry="0"
-         style="fill:#000000"
          id="rect4011" />
     </g>
     <g
-       id="g4021"
+       style="fill:#000000"
        transform="matrix(0.48205797,-0.48205797,0.48205797,0.48205797,-420.35572,-462.49182)">
       <rect
          x="-52.653999"
@@ -116,28 +100,25 @@
          width="9.849"
          height="8.3338003"
          ry="1.2627"
-         style="fill:#000000"
          id="rect4025" />
       <rect
          x="-49.624001"
          y="948.37329"
          width="3.7881"
          height="2.9042001"
-         style="fill:#000000"
          ry="0"
          id="rect4027" />
     </g>
     <g
+       style="fill:none;stroke:#000000;stroke-width:0.48138499"
        id="ticks">
       <path
          inkscape:transform-center-y="-371.65966"
          d="m 32.006529,16.513033 v 2.318938"
          inkscape:connector-curvature="0"
-         style="fill:none;stroke:#000000;stroke-width:0.48138499"
          id="path4061" />
       <path
          inkscape:connector-curvature="0"
-         style="fill:none;stroke:#000000;stroke-width:0.48138499"
          d="M 52.706363,37.212919 H 50.387477"
          inkscape:transform-center-x="-371.65966"
          id="path4065" />
@@ -145,11 +126,9 @@
          inkscape:transform-center-y="371.65958"
          d="M 32.006529,57.912805 V 55.593919"
          inkscape:connector-curvature="0"
-         style="fill:none;stroke:#000000;stroke-width:0.48138499"
          id="path4067" />
       <path
          inkscape:connector-curvature="0"
-         style="fill:none;stroke:#000000;stroke-width:0.48138499"
          d="m 11.306118,37.212919 h 2.318885"
          inkscape:transform-center-x="371.65958"
          id="path4069" />
@@ -158,67 +137,58 @@
          inkscape:transform-center-y="-321.86676"
          inkscape:transform-center-x="-185.82985"
          d="M 42.356209,19.286442 41.19674,21.294653"
-         style="fill:none;stroke:#000000;stroke-width:0.48138499"
          id="path4071" />
       <path
          inkscape:connector-curvature="0"
          inkscape:transform-center-y="-185.8298"
          inkscape:transform-center-x="-321.86673"
          d="m 49.933006,26.862923 -2.008422,1.159469"
-         style="fill:none;stroke:#000000;stroke-width:0.48138499"
          id="path4073" />
       <path
          inkscape:connector-curvature="0"
          inkscape:transform-center-y="185.8298"
          inkscape:transform-center-x="-321.86669"
          d="m 49.933006,47.563125 -2.008211,-1.15947"
-         style="fill:none;stroke:#000000;stroke-width:0.48138499"
          id="path4075" />
       <path
          inkscape:connector-curvature="0"
          inkscape:transform-center-y="321.86666"
          inkscape:transform-center-x="-185.82983"
          d="M 42.356209,55.139921 41.19674,53.131657"
-         style="fill:none;stroke:#000000;stroke-width:0.48138499"
          id="path4077" />
       <path
          inkscape:connector-curvature="0"
          inkscape:transform-center-y="321.86666"
          inkscape:transform-center-x="185.82978"
          d="m 21.656323,55.139921 1.15947,-2.008264"
-         style="fill:none;stroke:#000000;stroke-width:0.48138499"
          id="path4079" />
       <path
          inkscape:connector-curvature="0"
          inkscape:transform-center-y="185.8298"
          inkscape:transform-center-x="321.86667"
          d="m 14.079527,47.563125 2.008264,-1.15947"
-         style="fill:none;stroke:#000000;stroke-width:0.48138499"
          id="path4081" />
       <path
          inkscape:connector-curvature="0"
          inkscape:transform-center-y="-185.82988"
          inkscape:transform-center-x="321.86665"
          d="m 14.079527,26.862923 2.008421,1.159469"
-         style="fill:none;stroke:#000000;stroke-width:0.48138499"
          id="path4083" />
       <path
          inkscape:connector-curvature="0"
          inkscape:transform-center-y="-321.86666"
          inkscape:transform-center-x="185.82973"
          d="m 21.656323,19.286442 1.15947,2.008264"
-         style="fill:none;stroke:#000000;stroke-width:0.48138499"
          id="path4085" />
       <path
          inkscape:connector-curvature="0"
          inkscape:transform-center-y="-321.86666"
          inkscape:transform-center-x="185.82973"
          d="m 21.656323,19.286442 1.15947,2.008264"
-         style="fill:none;stroke:#000000;stroke-width:0.48138499"
          id="path4087" />
     </g>
     <path
-       style="font-size:medium;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;text-indent:0;text-align:start;text-decoration:none;line-height:normal;letter-spacing:normal;word-spacing:normal;text-transform:none;direction:ltr;block-progression:tb;writing-mode:lr-tb;text-anchor:start;baseline-shift:baseline;color:#000000;fill:#000000;fill-opacity:1;stroke:none;stroke-width:25.45299911;marker:none;visibility:visible;display:inline;overflow:visible;enable-background:accumulate;font-family:Sans;-inkscape-font-specification:Sans"
+       style="fill:#000000"
        d="m 32.001132,36.338158 c 0.513713,0 0.907828,0.394115 0.907828,0.907827 0,0.513713 -0.394115,0.910192 -0.907828,0.910192 -0.513712,0 -0.910191,-0.396479 -0.910191,-0.910192 0,-0.513712 0.396479,-0.907827 0.910191,-0.907827 z"
        id="centerdot"
        inkscape:connector-curvature="0" />
