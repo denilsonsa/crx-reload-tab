@@ -1,5 +1,14 @@
 'use strict';
 
+// Note: Chrome provides an "alarms" API, but:
+// * It requires an extra permission: "alarms"
+// * The minimum interval is one minute.
+// https://developer.chrome.com/extensions/alarms
+//
+// Since this extension has sub-minute reload intervals, the "alarms" API can't
+// be used. That's why this extension uses a persistent background page with
+// setInterval/setTimeout.
+
 //////////////////////////////////////////////////////////////////////
 // Internal data structure.
 
@@ -150,38 +159,9 @@ function set_or_clear_chrome_listeners() {
 	if (g_active_reloads_length == 0) {
 		chrome.tabs.onUpdated.removeListener(tabs_onUpdated_handler);
 		chrome.tabs.onRemoved.removeListener(tabs_onRemoved_handler);
-		if (g_persistent_connection) {
-			g_persistent_connection.disconnect();
-			g_persistent_connection = null;
-		}
 	}
 	else if (g_active_reloads_length == 1) {
 		chrome.tabs.onUpdated.addListener(tabs_onUpdated_handler);
 		chrome.tabs.onRemoved.addListener(tabs_onRemoved_handler);
-		if (!g_persistent_connection) {
-			g_persistent_connection = chrome.runtime.connect({name: "crx-reload-tab"});
-			console.log(g_persistent_connection);
-		}
 	}
 }
-
-// Event pages get unloaded when they are finished, but they are kept alive if
-// there is at least one connection.
-var g_persistent_connection = null;
-var g_other_port = null;
-
-chrome.runtime.onConnect.addListener(function(port) {
-	console.log(port);
-	g_other_port = port;
-});
-
-chrome.browserAction.setBadgeText({
-	text: 'HI!'
-});
-console.log('bg wake up!');
-chrome.runtime.onSuspend.addListener(function() {
-	console.log('onSuspend');
-	chrome.browserAction.setBadgeText({
-		text: 'BYE!'
-	});
-});
