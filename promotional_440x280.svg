@@ -15,7 +15,7 @@
    viewBox="0 0 440 280"
    width="100%"
    height="100%"
-   sodipodi:docname="promotional.svg"
+   sodipodi:docname="promotional_440x280.svg"
    inkscape:export-filename="/home/denilson/myrepos/crx-reload-tab/promotional.png"
    inkscape:export-xdpi="90"
    inkscape:export-ydpi="90">
@@ -27,7 +27,7 @@
         <dc:format>image/svg+xml</dc:format>
         <dc:type
            rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
-        <dc:title></dc:title>
+        <dc:title />
       </cc:Work>
     </rdf:RDF>
   </metadata>
@@ -40,21 +40,24 @@
      borderopacity="1.0"
      inkscape:pageopacity="0.0"
      inkscape:pageshadow="2"
-     inkscape:zoom="1.4142136"
-     inkscape:cx="322.36684"
-     inkscape:cy="188.98275"
+     inkscape:zoom="0.5"
+     inkscape:cx="398.65792"
+     inkscape:cy="199.65957"
      inkscape:document-units="px"
-     inkscape:current-layer="layer1"
+     inkscape:current-layer="g3797"
      showgrid="true"
      inkscape:snap-grids="true"
      inkscape:object-nodes="true"
      inkscape:object-paths="false"
      showguides="true"
      inkscape:guide-bbox="true"
-     inkscape:snap-nodes="true"
+     inkscape:snap-nodes="false"
      inkscape:snap-bbox="false"
      inkscape:bbox-nodes="false"
-     inkscape:snap-bbox-edge-midpoints="false">
+     inkscape:snap-bbox-edge-midpoints="false"
+     inkscape:snap-bbox-midpoints="false"
+     inkscape:snap-global="true"
+     inkscape:bbox-paths="false">
     <inkscape:grid
        type="xygrid"
        id="grid4652"
@@ -221,23 +224,54 @@
     </g>
     <text
        xml:space="preserve"
-       style="font-size:67.08203887999999893px;font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;text-align:start;line-height:125%;writing-mode:lr-tb;text-anchor:start;fill:#606060;fill-opacity:1;stroke:none;font-family:Roboto Condensed;-inkscape-font-specification:'Roboto Condensed, Bold'"
+       style="font-size:67.08203888px;font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;text-align:start;line-height:125%;writing-mode:lr-tb;text-anchor:start;fill:#606060;fill-opacity:1;stroke:none;font-family:Roboto Condensed;-inkscape-font-specification:'Roboto Condensed, Bold'"
        x="252.49117"
        y="-126.44615"
        id="text5186"
        sodipodi:linespacing="125%"
        transform="scale(0.89442719,1.118034)"><tspan
          sodipodi:role="line"
-         id="tspan5188"
          x="252.49117"
-         y="-126.44615">Tab</tspan><tspan
+         y="-126.44615"
+         id="tspan5190">Tab Auto</tspan><tspan
          sodipodi:role="line"
          x="252.49117"
-         y="-42.593601"
-         id="tspan5190">Auto</tspan><tspan
-         sodipodi:role="line"
-         x="252.49117"
-         y="41.258949"
+         y="-42.593605"
          id="tspan5192">Reloader</tspan></text>
+    <g
+       id="g3797"
+       transform="matrix(0.8203125,0,0,0.8203125,-260.83237,130.15484)">
+      <path
+         transform="matrix(1.8194052,0,0,0.90511951,-530.58829,-144.6459)"
+         d="m 687.5,62.09 -6.8612,7.572931 -5.25196,-8.765972 -8.20677,6.088864 -3.44088,-9.622142 -9.23696,4.370807 -1.49758,-10.108539 -9.91218,2.484783 0.50327,-10.206471 -10.20647,0.503269 2.48478,-9.912173 -10.10854,-1.497586 4.37081,-9.236955 -9.62214,-3.440889 6.08886,-8.206767 L 617.83707,6.8611996 625.41,1.6636951e-6 617.83707,-6.8612 l 8.76597,-5.251956 -6.08886,-8.206772 9.62214,-3.440885 -4.37081,-9.236959 10.10854,-1.497582 -2.48478,-9.912176 10.20647,0.503271 -0.50327,-10.206473 9.91217,2.484785 1.49759,-10.108542 9.23695,4.370809 3.44089,-9.622144 8.20677,6.088866 5.25196,-8.765973 6.8612,7.572931 6.8612,-7.572931 5.25196,8.765972 8.20677,-6.088864 3.44088,9.622142 9.23696,-4.370807 1.49758,10.108539 9.91218,-2.484783 -0.50327,10.206471 10.20647,-0.503269 -2.48478,9.912173 10.10854,1.497586 -4.37081,9.236955 9.62214,3.440889 -6.08886,8.206767 8.76597,5.2519604 L 749.59,-1.6636952e-6 757.16293,6.8612 l -8.76597,5.251956 6.08886,8.206772 -9.62214,3.440885 4.37081,9.236959 -10.10854,1.497582 2.48478,9.912176 -10.20647,-0.503271 0.50327,10.206473 -9.91217,-2.484785 -1.49759,10.108542 -9.23695,-4.370809 -3.44089,9.622144 -8.20677,-6.088866 -5.25196,8.765973 z"
+         inkscape:randomized="0"
+         inkscape:rounded="-3.1225023e-17"
+         inkscape:flatsided="false"
+         sodipodi:arg2="1.6689711"
+         sodipodi:arg1="1.5707963"
+         sodipodi:r2="70"
+         sodipodi:r1="62.09"
+         sodipodi:cy="0"
+         sodipodi:cx="687.5"
+         sodipodi:sides="32"
+         id="path3027"
+         style="fill:#ffffff;fill-opacity:1;fill-rule:nonzero;stroke:#606060;stroke-opacity:1"
+         sodipodi:type="star" />
+      <text
+         xml:space="preserve"
+         style="font-size:28.15999985px;font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;text-align:center;line-height:125%;writing-mode:lr-tb;text-anchor:middle;fill:#606060;fill-opacity:1;stroke:none;font-family:Roboto Condensed;-inkscape-font-specification:'Roboto Condensed, Bold'"
+         x="720.25964"
+         y="-154.95152"
+         id="text3012"
+         sodipodi:linespacing="125%"><tspan
+           sodipodi:role="line"
+           x="720.25964"
+           y="-154.95152"
+           id="tspan3018">Open-source!</tspan><tspan
+           id="tspan3025"
+           sodipodi:role="line"
+           x="720.25964"
+           y="-119.75153">No permissions!</tspan></text>
+    </g>
   </g>
 </svg>
