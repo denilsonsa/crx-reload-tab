@@ -104,7 +104,7 @@ function custom_form_input_handler(ev) {
 //////////////////////////////////////////////////////////////////////
 // Initialization.
 
-function init(tab_id, bgpage) {
+function init() {
 	run_with_tabId_and_bgPage(function(tab_id, bgpage) {
 		var total_reloads = bgpage.get_how_many_reloads_are_active();
 		var interval_seconds = bgpage.get_reload(tab_id);
