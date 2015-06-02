@@ -1,7 +1,7 @@
 Tab auto reloader (Chrome extension)
 ====================================
 
-[![Donate using PayPal](https://www.paypalobjects.com/en_US/i/btn/btn_donate_SM.gif)](https://www.paypal.com/cgi-bin/webscr?cmd=_donations&business=denilsonsa%40gmail%2ecom&lc=US&item_name=Denilson&item_number=crx-reload-tab&currency_code=BRL) [![Flattr this project](https://api.flattr.com/button/flattr-badge-large.png)](https://flattr.com/submit/auto?user_id=denilsonsa&url=https%3A%2F%2Fgithub.com%2Fdenilsonsa%2Fcrx-reload-tab&title=crx-reload-tab&description=This+Chrome+extension+reloads+the+current+tab+at+a+chosen+interval.&tags=github&category=software) [![Donate using Gratipay](https://img.shields.io/gratipay/denilsonsa.svg)](https://gratipay.com/denilsonsa/)
+[![Donate using PayPal](https://www.paypalobjects.com/en_US/i/btn/btn_donate_SM.gif)](https://www.paypal.com/cgi-bin/webscr?cmd=_donations&business=denilsonsa%40gmail%2ecom&lc=US&item_name=Denilson&item_number=crx-reload-tab&currency_code=BRL) [![Flattr this project](https://api.flattr.com/button/flattr-badge-large.png)](https://flattr.com/submit/auto?user_id=denilsonsa&url=https%3A%2F%2Fgithub.com%2Fdenilsonsa%2Fcrx-reload-tab&title=crx-reload-tab&description=This+Chrome+extension+reloads+the+current+tab+at+a+chosen+interval.&tags=github&category=software)
 
 Chrome extension to reload the current tab at a chosen interval. [Get it on Chrome Web Store!][cws]
 
