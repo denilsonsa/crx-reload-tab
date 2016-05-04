@@ -1,7 +1,7 @@
 'use strict';
 
 //////////////////////////////////////////////////////////////////////
-// Convenience wraooer function.
+// Convenience wrapper function.
 
 function run_with_tabId_and_bgPage(callback) {
 	chrome.tabs.query({currentWindow: true, active : true}, function(tabs) {
