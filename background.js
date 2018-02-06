@@ -14,22 +14,42 @@
 
 function Reload(tab_id, seconds) {
 	this.tab_id = tab_id;
-	this.seconds = seconds;
-	this.badge_text = seconds_to_badge_text(seconds);
+	this.seconds = seconds;  // Interval in seconds
+	this.next_reload_timestamp = Date.now() + 1000 * seconds;  // Milliseconds
+	this.badge_interval_text = seconds_to_badge_text(seconds);
 	this.interval_id = null;
 }
 
 Reload.prototype.toString = function() {
-	return 'Reload(' + this.tab_id + ', ' + this.seconds + ' /* text=' + this.badge_text + ', id=' + this.interval_id + ' */ )';
+	return 'Reload(' + this.tab_id + ', ' + this.seconds + ' /* text=' + this.badge_interval_text + ', id=' + this.interval_id + ' */ )';
 };
 
 Reload.prototype.reload_tab = function() {
+	this.next_reload_timestamp = Date.now() + 1000 * this.seconds;
 	chrome.tabs.reload(this.tab_id);
 };
 
 Reload.prototype.set_chrome_badge = function() {
+	var badge_text;
+	if (!this.tab_id) {
+		// Tab has been closed/removed.
+		return;
+	}
+	if (!this.interval_id) {
+		// Tab is no longer auto-reloading.
+		badge_text = '';
+	} else if (g_should_display_badge_countdown && this.next_reload_timestamp > 0) {
+		var delta = Math.round((this.next_reload_timestamp - Date.now()) / 1000);
+		if (delta > 0) {
+			badge_text = seconds_to_badge_text(delta);
+		} else {
+			badge_text = 'now';
+		}
+	} else {
+		badge_text = this.badge_interval_text;
+	}
 	chrome.browserAction.setBadgeText({
-		text: this.badge_text,
+		text: badge_text,
 		tabId: this.tab_id
 	});
 };
@@ -37,14 +57,37 @@ Reload.prototype.set_chrome_badge = function() {
 Reload.prototype.clear = function() {
 	clearInterval(this.interval_id);
 	this.interval_id = null;
-	this.badge_text = '';
+	this.next_reload_timestamp = 0;
+	this.badge_interval_text = '';
 	this.set_chrome_badge();
 };
+
+
+//////////////////////////////////////////////////////////////////////
+// Global variables.
 
 // Dictionary of currently active Reload objects.
 // g_active_reloads[tab_id] -> Reload() object
 var g_active_reloads = {};
 var g_active_reloads_length = 0;
+
+// To avoid setting event listeners twice.
+var g_are_event_listeners_set = false;
+
+// Used to update the badge every second.
+var g_should_display_badge_countdown = true;
+var g_badge_countdown_interval_id = null;
+
+function update_chrome_badge_every_second() {
+	var ids = Object.keys(g_active_reloads)
+	for (var tab_id of ids) {
+		var x = g_active_reloads[tab_id];
+		if (x) {
+			x.set_chrome_badge();
+		}
+	}
+}
+
 
 //////////////////////////////////////////////////////////////////////
 // "External" API, called from popup.html.
@@ -53,9 +96,12 @@ var g_active_reloads_length = 0;
 
 // Deletes a reload for this tab_id.
 // Does nothing if there is no reload for that tab.
-function clear_reload(tab_id) {
+function clear_reload(tab_id, has_the_tab_been_removed) {
 	var x = g_active_reloads[tab_id];
 	if (x) {
+		if (has_the_tab_been_removed) {
+			x.tab_id = null;
+		}
 		x.clear();
 		g_active_reloads_length--;
 		set_or_clear_chrome_listeners();
@@ -80,10 +126,10 @@ function set_reload(tab_id, seconds) {
 		var x = new Reload(tab_id, seconds);
 		g_active_reloads[tab_id] = x;
 		g_active_reloads_length++;
-		x.set_chrome_badge();
 		x.interval_id = setInterval(function() {
 			x.reload_tab();
 		}, seconds * 1000);
+		x.set_chrome_badge();
 		set_or_clear_chrome_listeners();
 	}
 }
@@ -103,6 +149,22 @@ function get_how_many_reloads_are_active() {
 	return g_active_reloads_length;
 }
 
+// Stop the countdown display on the badge text.
+function stop_badge_countdown() {
+	if (g_badge_countdown_interval_id) {
+		clearInterval(g_badge_countdown_interval_id);
+		g_badge_countdown_interval_id = null;
+	}
+}
+
+// Start the countdown display on the badge text (if it is enabled).
+function start_badge_countdown() {
+	stop_badge_countdown();
+	if (g_should_display_badge_countdown) {
+		g_badge_countdown_interval_id = setInterval(update_chrome_badge_every_second, 1000);
+	}
+}
+
 //////////////////////////////////////////////////////////////////////
 // Misc.
 
@@ -112,7 +174,7 @@ function split_seconds(seconds) {
 	var days = Math.floor(hours / 24);
 
 	return {
-		'seconds': seconds % 60,
+		'seconds': Math.floor(seconds) % 60,
 		'minutes': minutes % 60,
 		'hours': hours % 24,
 		'days': days
@@ -177,7 +239,7 @@ function tabs_onUpdated_handler(tab_id, change_info, tab) {
 }
 
 function tabs_onRemoved_handler(tab_id, remove_info) {
-	clear_reload(tab_id);
+	clear_reload(tab_id, true);
 }
 
 // Should be called immediately after g_active_reloads_length is changed.
@@ -187,9 +249,13 @@ function set_or_clear_chrome_listeners() {
 	if (g_active_reloads_length == 0) {
 		chrome.tabs.onUpdated.removeListener(tabs_onUpdated_handler);
 		chrome.tabs.onRemoved.removeListener(tabs_onRemoved_handler);
+		stop_badge_countdown();
+		g_are_event_listeners_set = false;
 	}
-	else if (g_active_reloads_length == 1) {
+	else if (g_active_reloads_length == 1 && !g_are_event_listeners_set) {
 		chrome.tabs.onUpdated.addListener(tabs_onUpdated_handler);
 		chrome.tabs.onRemoved.addListener(tabs_onRemoved_handler);
+		start_badge_countdown();
+		g_are_event_listeners_set = true;
 	}
 }
