@@ -81,7 +81,7 @@ var g_active_reloads_length = 0;
 var g_are_event_listeners_set = false;
 
 // Used to update the badge every second.
-var g_should_display_badge_countdown = true;  // TODO: persist this in local storage
+var g_should_display_badge_countdown = true;  // This value is overwritten in init().
 var g_badge_countdown_interval_id = null;
 
 function update_chrome_badge_every_second() {
@@ -291,8 +291,20 @@ function init_context_menu_items() {
 				}
 				update_chrome_badge_every_second();
 			}
+			chrome.storage.local.set({'should_display_badge_countdown': g_should_display_badge_countdown});
 		}
 	});
 }
 
-init_context_menu_items();
+function init() {
+	chrome.storage.local.get(['should_display_badge_countdown'], function(result) {
+		var value = result.should_display_badge_countdown;
+		if (value === undefined) {
+			value = true;
+		}
+		g_should_display_badge_countdown = value;
+		init_context_menu_items();
+	});
+}
+
+init();
