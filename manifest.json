@@ -25,5 +25,6 @@
     "persistent": true
   },
   "permissions": [
+      "contextMenus"
   ]
 }

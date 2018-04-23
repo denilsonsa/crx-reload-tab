@@ -31,6 +31,7 @@ Reload.prototype.reload_tab = function() {
 
 Reload.prototype.set_chrome_badge = function() {
 	var badge_text;
+	var badge_color = '#204a87';
 	if (!this.tab_id) {
 		// Tab has been closed/removed.
 		return;
@@ -39,6 +40,7 @@ Reload.prototype.set_chrome_badge = function() {
 		// Tab is no longer auto-reloading.
 		badge_text = '';
 	} else if (g_should_display_badge_countdown && this.next_reload_timestamp > 0) {
+		badge_color = '#4e9a06';
 		var delta = Math.round((this.next_reload_timestamp - Date.now()) / 1000);
 		if (delta > 0) {
 			badge_text = seconds_to_badge_text(delta);
@@ -50,6 +52,10 @@ Reload.prototype.set_chrome_badge = function() {
 	}
 	chrome.browserAction.setBadgeText({
 		text: badge_text,
+		tabId: this.tab_id
+	});
+	chrome.browserAction.setBadgeBackgroundColor({
+		color: badge_color,
 		tabId: this.tab_id
 	});
 };
@@ -75,7 +81,7 @@ var g_active_reloads_length = 0;
 var g_are_event_listeners_set = false;
 
 // Used to update the badge every second.
-var g_should_display_badge_countdown = true;
+var g_should_display_badge_countdown = true;  // TODO: persist this in local storage
 var g_badge_countdown_interval_id = null;
 
 function update_chrome_badge_every_second() {
@@ -259,3 +265,34 @@ function set_or_clear_chrome_listeners() {
 		g_are_event_listeners_set = true;
 	}
 }
+
+//////////////////////////////////////////////////////////////////////
+// Context menu item.
+
+function init_context_menu_items() {
+	chrome.contextMenus.create({
+		'id': 'toggle_countdown',
+		'title': 'Show timer countdown',
+		'type': 'checkbox',
+		'checked': g_should_display_badge_countdown,
+		'contexts': ['browser_action'],
+	});
+	chrome.contextMenus.onClicked.addListener(function(info, tab) {
+		if (info.menuItemId === 'toggle_countdown') {
+			g_should_display_badge_countdown = ! g_should_display_badge_countdown;
+			chrome.contextMenus.update('toggle_countdown', {
+				'checked': g_should_display_badge_countdown,
+			});
+			if (g_active_reloads_length > 0) {
+				if (g_should_display_badge_countdown) {
+					start_badge_countdown();
+				} else {
+					stop_badge_countdown();
+				}
+				update_chrome_badge_every_second();
+			}
+		}
+	});
+}
+
+init_context_menu_items();
