@@ -40,7 +40,7 @@ Reload.prototype.set_chrome_badge = function() {
 		// Tab is no longer auto-reloading.
 		badge_text = '';
 	} else if (g_should_display_badge_countdown && this.next_reload_timestamp > 0) {
-		badge_color = '#4e9a06';
+		badge_color = '#448a00';
 		var delta = Math.round((this.next_reload_timestamp - Date.now()) / 1000);
 		if (delta > 0) {
 			badge_text = seconds_to_badge_text(delta);
