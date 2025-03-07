@@ -53,6 +53,15 @@ closed.
 The extension is smart enough to remove the listeners if no tab is being
 auto-reloaded.
 
+TODO
+----
+
+I need to migrate this extension to Manifest V3. Unfortunately, this means rewriting a large chunk of the code. I'm collecting here some links that will help me whenever I tackle this problem:
+
+* <https://developer.mozilla.org/en-US/docs/Mozilla/Add-ons/WebExtensions/Background_scripts#convert_to_non-persistent>
+* <https://developer.chrome.com/docs/extensions/develop/migrate/manifest>
+* <https://developer.chrome.com/docs/extensions/develop/migrate/to-service-workers>
+* <https://developer.chrome.com/docs/extensions/develop/concepts/service-workers/lifecycle>
 
 [cws]: https://chrome.google.com/webstore/detail/knnahnemielbnanghaphjgheamgcjjcb
 [issues]: https://github.com/denilsonsa/crx-reload-tab/issues

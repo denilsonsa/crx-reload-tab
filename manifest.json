@@ -1,31 +1,32 @@
 {
-  "manifest_version": 2,
-
+  "manifest_version": 3,
   "name": "Tab auto reloader",
   "short_name": "Tab reloader",
   "description": "This extension reloads the current tab at a chosen interval.",
-  "version": "1.1",
+  "author": "Denilson S\u00e1 Maia",
+  "version": "1.9",
   "homepage_url": "https://github.com/denilsonsa/crx-reload-tab/",
-
   "icons": {
     "16": "icon16.png",
     "48": "icon48.png",
     "128": "icon128.png"
   },
-  "browser_action": {
+  "action": {
     "default_icon": {
-      "19": "icon19.png",
-      "38": "icon38.png"
+      "16": "icon16.png",
+      "48": "icon48.png",
+      "128": "icon128.png"
     },
     "default_popup": "popup.html",
     "default_title": "Reload this page every…"
   },
   "background": {
-    "scripts": [ "background.js" ],
-    "persistent": true
+    "service_worker": "serviceworker.js",
+    "type": "module"
   },
   "permissions": [
       "contextMenus",
       "storage"
-  ]
+  ],
+  "incognito": "spanning"
 }
